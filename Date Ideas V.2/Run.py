@@ -52,6 +52,10 @@ def function(filename):
 def delete():
 	print ("Deeeeelete")
 
+def dates():
+	pass #Lets make sure to put comments because I wanted to create a function
+	#that takes the variable created from random() then continues filtering it
+
 ideaEvar=StringVar()
 ideaEvar.set("")
 randidea=StringVar()
