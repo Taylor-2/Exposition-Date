@@ -2,62 +2,47 @@ from tkinter import *
 from random import *
 '''
 
-Mark, Lets just put our stuff and ideas, changes, etc. in this comment block, I'll run through all the code and 
-comment it so you can better understand the tkinter stuff.
 
-I'm not sure what you mean... what else do you want to filter the idea by?
-
-And also, all comments tabbed over are explanations, and the ones in the actual body are placeholders
-
-Also I created each of the price/effort text files
-It would be cool if we could have all the supporting files in a folder in the Date Ideas V.2 folder
-like ----> Date Ideas V.2
-				Run.py
-				Supporting folder
-					Low
-					Med
-					High
-					Free
-					Icon
-It's a shit file explanation, but you get my idea, I just don't know how to call them in the code when they're like that
 
 '''
 window=Tk()
-window.iconbitmap('heart.ico')			#Initializes the GUI, sets the icon, name, and window size
+window.iconbitmap('heart.ico')					#Initializes the GUI, sets the icon, name, and window size
 window.title("Date Ideas")
 #window.geometry("250x100")
 
-def submit():								#Function that runs every whenever you hit the submit button
-	idea=ideaEvar.get()						#Goal is to get it to take the value of the idea field, and the price/effort field
+def submit():									#Function that runs every whenever you hit the submit button
+	idea=ideaEvar.get()
 	filename=price.get()
-	print (filename)								#Then write the idea to the correct price text file
 	if (idea != "") and (idea != " "):
+		if (filename == "Free ($0)"):
+			filename="Free"
+		elif (filename == "Low ($5-$10)"):
+			filename="Low"
+		elif (filename == "Medium ($10-$25)"):
+			filename="Med"
+		elif (filename == "High ($25+)"):
+			filename="High"
 		writer(filename,idea)
 		ideaEvar.set("")
 		price.set("Price/Effort")
 	else:
 		pass
 
-def random():										#Picks the first set of randomness, picks the number that determines what the
-	randomone=randint(0,100)						#Price/effort will be
+def random():									#Picks the first set of randomness, picks the number that determines what the
+	randomone=randint(0,100)
 	if (randomone>=0 and randomone<=53):
-		#final=pickerpt2("Free.txt")					#Currently works but isn't fully set up, just need to attach the correct files to the statements
-		print("free")
+		final=pickerpt2("Free.txt")
 	elif (randomone>53 and randomone<=79):
-		#final=pickerpt2("Low.txt")
-		print("low")						#These print statements are placeholders until we get the pickerpt2(): hooked up
+		final=pickerpt2("Low.txt")
 	elif (randomone>79 and randomone<=92):
-		#final=pickerpt2("Med.txt")
-		print("med")
+		final=pickerpt2("Med.txt")
 	elif (randomone>92 and randomone<=98):
-		#final=pickerpt2("High.txt")
-		print("high")
+		final=pickerpt2("High.txt")
 	elif (randomone==99):
-		print ("egg 1")
+		final="egg1"
 	elif (randomone==100):
-		print ("egg 2")
-	#print (final)
-	#Whatever I need to put here so that it's displayed as a label
+		final="egg2"
+	randL["text"]=str(final)
 
 def writer(filename,idea):
 	file=open(filename + ".txt","a")
@@ -67,7 +52,7 @@ def writer(filename,idea):
 def pickerpt2(filename):						#Function to take the price/effort filename from random(): then open the file, and choose an idea
 	file=open(filename,"r")						#Second set of randomness
 	data=file.readlines()		
-	file.close()								#Currently works in theory, but hasn't been tested
+	file.close()
 	leng=len(data)
 	number=randint(0,leng-1)
 	chosen=data[number]
@@ -76,40 +61,30 @@ def pickerpt2(filename):						#Function to take the price/effort filename from r
 	return chosen
 
 def delete():									#Function that will eventually delete an idea on a buttonclick
-	print ("Deeeeelete")						#Currently not set up, just a placeholder
+	print ()						#Currently not set up, just a placeholder
 
-def dates():
-	pass 							#Lets make sure to put comments because I wanted to create a function
-									#that takes the ideaable created from random() then continues filtering it
 
-ideaEvar=StringVar()			#Initializes ideaables for the tkinter
+ideaEvar=StringVar()							#Initializes variables for the tkinter
 ideaEvar.set("")
 randidea=StringVar()
 randidea.set("")
 price=StringVar()
 price.set("Price/Effort")
 
-file=open("Idea List.txt","r")			#Grabs the date ideas from the file, might actually be unnessecary
-data=file.readlines()
-file.close()
-
 menu=OptionMenu(window, price, "Free ($0)", "Low ($5-$10)", "Medium ($10-$25)", "High ($25+)")			#Price/effort drop down menu... not sure how to pull the selection
 ideaL=Label(window,text="Idea: ")																		#idea label --> "Idea: " top left of the GUI
 ideaE=Entry(window,textvariable=ideaEvar,width=20)														#Idea Entery field
 butt=Button(window,text="Submit",command=submit)														#Submit Button
-randE=Entry(window,text=randidea)																		#Random Entery field --> I want this to be a label in the final version, but im not sure why it dosent work, if you want to mess around with it just change the "Entery" after the ideaable to "Label"
+randL=Label(window,text="")																				#Random Entery field --> I want this to be a label in the final version, but im not sure why it dosent work, if you want to mess around with it just change the "Entery" after the ideaable to "Label"
 randButt=Button(window,text="Random",command=random)													#Random Button
-randL=Label(window,text="Random: ")																		#Random Label --> "Random: "    Unnessecary once we get the random entery field to be a label
 delbutt=Button(window,text="Delete Idea",command=delete)												#Delete Button
 
-ideaL.grid(column=0,row=1)									#Initializes each GUI element
-ideaE.grid(column=1,row=1)									#Also sets the relative positions in the window
-butt.grid(row=3,column=1)									
-randE.grid(row=2,column=1)									#You can mess with the padding to get a better look with 
-randButt.grid(row=3,column=0,padx=25)						#		pady=*Some number*      and     padx=*Some number*
-randL.grid(row=2,column=0)
-delbutt.grid(row=3,column=3)
+ideaL.grid(column=0,row=1)					#Initializes each GUI element
+ideaE.grid(column=1,row=1)							#Also sets the relative positions in the window
+butt.grid(row=3,column=0,sticky=EW)							#You can mess with the padding to get a better look with 
+randButt.grid(row=3,column=1,sticky=EW)						#	pady=*Some number*      and     padx=*Some number*
+randL.grid(row=2,columnspan=3)
+delbutt.grid(row=3,column=2,sticky=EW)
 menu.grid(row=1,column=2)
 
-
-window.mainloop()							#Loops the GUI window, if the GUI isn't working, check that this is still here
+window.mainloop()									#Loops the GUI window, if the GUI isn't working, check that this is still here

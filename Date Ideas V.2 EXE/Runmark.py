@@ -82,6 +82,7 @@ def dates(randnum): #this function I think should be used for actually
 		return "f"
 	 #Lets make sure to put comments because I wanted to create a function
 	#that takes the variable created from random() then continues filtering it
+	
 def mash(): #I'm unsure if this was necessary, just made a function
 #that calls both dates() and random() to be used then display the
 #output
