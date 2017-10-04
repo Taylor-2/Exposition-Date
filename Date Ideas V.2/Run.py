@@ -7,8 +7,12 @@ Check out the testdelete.py in the exe folder, it deletes h9 from the High.txt f
 
 
 '''
+
+#price=["a"]
+#ideaname=["a"]
+
 window=Tk()
-window.iconbitmap('heart.ico')					#Initializes the GUI, sets the icon, name, and window size
+window.iconbitmap('back/heart.ico')					#Initializes the GUI, sets the icon, name, and window size
 window.title("Date Ideas")
 #window.geometry("250x100")
 
@@ -49,14 +53,15 @@ def random():									#Picks the first set of randomness, picks the number that 
 	elif (randomone==100):
 		final="egg2"
 	randL["text"]=str(final)
+	#ideaname[0]=str(final)
 
 def writer(filename,idea):
-	file=open(filename + ".txt","a")
+	file=open("back/" + filename + ".txt","a")
 	file.write(idea + "\n")
 	file.close()
 
 def pickerpt2(filename):						#Function to take the price/effort filename from random(): then open the file, and choose an idea
-	file=open(filename,"r")						#Second set of randomness
+	file=open("back/" +filename,"r")						#Second set of randomness
 	data=file.readlines()		
 	file.close()
 	leng=len(data)
@@ -64,14 +69,17 @@ def pickerpt2(filename):						#Function to take the price/effort filename from r
 	chosen=data[number]
 	leng=len(chosen)
 	chosen=str(chosen[0:leng-1])
+	#price[0]=str(filename)
 	return chosen
 
 def delete():									#Works except for getting the idea and price, you can see a demonstration in the EXE folder
-	#Get ideaname
-	#Get price
-	filename=formatprice(price)
+	#ideaname=ideaname[0]
+	#print (ideaname)#Get ideaname
+	#price=price[0]#Get price
+	#print (price)
+	#filename=formatprice(price)
 	filename=price
-	file=open(filename + ".txt","r")
+	file=open("back/" +filename,"r")
 	data=file.readlines()
 	file.close()
 	leng=len(data)
@@ -83,9 +91,10 @@ def delete():									#Works except for getting the idea and price, you can see 
 		if (temp != ideaname):
 			list1.append(temp + "\n")
 		else:
+			pass
 		ctr += 1
-	os.remove(filename + ".txt")
-	file=open(filename + ".txt","a")
+	os.remove("back/" +filename + ".txt")
+	file=open("back/" +filename + ".txt","a")
 	leng=len(list1)
 	ctr=0
 	while(ctr<leng):
