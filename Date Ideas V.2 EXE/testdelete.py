@@ -1,10 +1,21 @@
 import os
 
-def function(ideaname, price):
-	#Get ideaname
-	#Get price
-	#filename=formatprice(price)
+ideaname="start"
+price="start1"
+
+def adjust():
+	global ideaname
+	ideaname = "h9"
+	global price
+	price = "High"
+
+def function():
+	adjust()
+
 	filename=price
+	print (filename)
+	print (ideaname)
+
 	file=open(filename + ".txt","r")
 	data=file.readlines()
 	file.close()
@@ -18,6 +29,7 @@ def function(ideaname, price):
 		if (temp != ideaname):
 			list1.append(temp + "\n")
 		else:
+			pass
 		ctr += 1
 	os.remove(filename + ".txt")
 	file=open(filename + ".txt","a")
@@ -28,6 +40,4 @@ def function(ideaname, price):
 		ctr += 1
 	file.close()
 
-ideaname = "h9"
-price = "High"
-function(ideaname,price)
+function()

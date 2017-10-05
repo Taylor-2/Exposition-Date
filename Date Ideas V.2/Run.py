@@ -8,8 +8,8 @@ Check out the testdelete.py in the exe folder, it deletes h9 from the High.txt f
 
 '''
 
-#price=["a"]
-#ideaname=["a"]
+ideaname="start"
+price="start"
 
 window=Tk()
 window.iconbitmap('back/heart.ico')					#Initializes the GUI, sets the icon, name, and window size
@@ -39,21 +39,32 @@ def formatprice(price):
 	return price
 
 def random():									#Picks the first set of randomness, picks the number that determines what the
+	global ideaname
+	global price
 	randomone=randint(0,100)
 	if (randomone>=0 and randomone<=53):
-		final=pickerpt2("Free.txt")
+		filename="Free.txt"
+		final=pickerpt2(filename)
 	elif (randomone>53 and randomone<=79):
+		filename="Low.txt"
 		final=pickerpt2("Low.txt")
 	elif (randomone>79 and randomone<=92):
+		filename="Med.txt"
 		final=pickerpt2("Med.txt")
 	elif (randomone>92 and randomone<=98):
+		filename="High.txt"
 		final=pickerpt2("High.txt")
 	elif (randomone==99):
 		final="egg1"
 	elif (randomone==100):
 		final="egg2"
 	randL["text"]=str(final)
-	#ideaname[0]=str(final)
+	ideaname=str(final)
+	ideaname = final
+	price = filename
+	print (ideaname)
+	print(price)
+
 
 def writer(filename,idea):
 	file=open("back/" + filename + ".txt","a")
@@ -69,17 +80,12 @@ def pickerpt2(filename):						#Function to take the price/effort filename from r
 	chosen=data[number]
 	leng=len(chosen)
 	chosen=str(chosen[0:leng-1])
-	#price[0]=str(filename)
 	return chosen
 
 def delete():									#Works except for getting the idea and price, you can see a demonstration in the EXE folder
-	#ideaname=ideaname[0]
-	#print (ideaname)#Get ideaname
-	#price=price[0]#Get price
-	#print (price)
-	#filename=formatprice(price)
 	filename=price
-	file=open("back/" +filename,"r")
+	print (filename)
+	file=open("back/" +str(filename),"r")
 	data=file.readlines()
 	file.close()
 	leng=len(data)
@@ -93,8 +99,8 @@ def delete():									#Works except for getting the idea and price, you can see 
 		else:
 			pass
 		ctr += 1
-	os.remove("back/" +filename + ".txt")
-	file=open("back/" +filename + ".txt","a")
+	os.remove("back/" +filename)
+	file=open("back/" +filename,"a")
 	leng=len(list1)
 	ctr=0
 	while(ctr<leng):
