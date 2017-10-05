@@ -8,8 +8,8 @@ Check out the testdelete.py in the exe folder, it deletes h9 from the High.txt f
 
 '''
 
-ideaname="start"
-price="start"
+ideanamefordelete="start"
+pricefordelete="start"
 
 window=Tk()
 window.iconbitmap('back/heart.ico')					#Initializes the GUI, sets the icon, name, and window size
@@ -25,7 +25,7 @@ def submit():									#Function that runs every whenever you hit the submit butt
 		ideaEvar.set("")
 		price.set("Price/Effort")
 	else:
-		pass
+		print("Blank")
 
 def formatprice(price):
 	if (price == "Free ($0)"):
@@ -39,8 +39,8 @@ def formatprice(price):
 	return price
 
 def random():									#Picks the first set of randomness, picks the number that determines what the
-	global ideaname
-	global price
+	global ideanamefordelete
+	global pricefordelete
 	randomone=randint(0,100)
 	if (randomone>=0 and randomone<=53):
 		filename="Free.txt"
@@ -59,12 +59,8 @@ def random():									#Picks the first set of randomness, picks the number that 
 	elif (randomone==100):
 		final="egg2"
 	randL["text"]=str(final)
-	ideaname=str(final)
-	ideaname = final
-	price = filename
-	print (ideaname)
-	print(price)
-
+	ideanamefordelete = final
+	pricefordelete = filename
 
 def writer(filename,idea):
 	file=open("back/" + filename + ".txt","a")
@@ -83,8 +79,7 @@ def pickerpt2(filename):						#Function to take the price/effort filename from r
 	return chosen
 
 def delete():									#Works except for getting the idea and price, you can see a demonstration in the EXE folder
-	filename=price
-	print (filename)
+	filename=pricefordelete
 	file=open("back/" +str(filename),"r")
 	data=file.readlines()
 	file.close()
@@ -94,7 +89,7 @@ def delete():									#Works except for getting the idea and price, you can see 
 	while(ctr<leng):
 		temp = data[ctr]
 		temp = temp[0:-1]
-		if (temp != ideaname):
+		if (temp != ideanamefordelete):
 			list1.append(temp + "\n")
 		else:
 			pass
@@ -107,6 +102,8 @@ def delete():									#Works except for getting the idea and price, you can see 
 		file.write(list1[ctr])
 		ctr += 1
 	file.close()
+	randL["text"]=""
+	print("File Deleted")
 
 ideaEvar=StringVar()							#Initializes variables for the tkinter
 ideaEvar.set("")
