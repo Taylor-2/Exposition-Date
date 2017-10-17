@@ -41,22 +41,22 @@ def formatprice(price):
 def random():									#Picks the first set of randomness, picks the number that determines what the
 	global ideanamefordelete
 	global pricefordelete
-	randomone=randint(0,100)
-	if (randomone>=0 and randomone<=53):
+	randomone=randint(0,1000)
+	if (randomone>=0 and randomone<=600):		#60%
 		filename="Free.txt"
 		final=pickerpt2(filename)
-	elif (randomone>53 and randomone<=79):
+	elif (randomone>600 and randomone<=850):		#25%
 		filename="Low.txt"
 		final=pickerpt2("Low.txt")
-	elif (randomone>79 and randomone<=92):
+	elif (randomone>850 and randomone<=950):		#15%
 		filename="Med.txt"
 		final=pickerpt2("Med.txt")
-	elif (randomone>92 and randomone<=98):
+	elif (randomone>950 and randomone<=998):	#4.8%
 		filename="High.txt"
 		final=pickerpt2("High.txt")
-	elif (randomone==99):
+	elif (randomone==999):						#0.1%
 		final="egg1"
-	elif (randomone==100):
+	elif (randomone==1000):						#0.1%
 		final="egg2"
 	randL["text"]=str(final)
 	ideanamefordelete = final
