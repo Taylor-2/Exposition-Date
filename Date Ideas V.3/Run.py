@@ -2,9 +2,6 @@ from tkinter import *
 from random import *
 import os
 '''
-Got the delete working except for the getting of the idea and price variables
-Check out the testdelete.py in the exe folder, it deletes h9 from the High.txt file
-
 
 '''
 

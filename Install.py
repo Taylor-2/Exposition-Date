@@ -6,14 +6,23 @@ root = Tk()
 root.title("Installer")
 def CreateDesktop():
 	#shutil.copy2("Exposition Date Main\\Exposition Date.lnk","C:\\users\\"+os.getlogin()+"\\desktop")
-	print("Shortcut")
+	print("Create Shortcut")
+
+def Launch():
+	#os.system("start "+path.get()+"\\Exposition Date\\dist\\Exposition Date.exe")
+	os.startfile("C:\\Users\\Dexter Hubbard\\Documents\\Exposition Date\\dist\\Exposition Date.exe")
+	print("Execute")
+
 def CopyFiles():
-	shutil.copytree("Exposition Date Main",path.get()+"\\Exposition Date")
+	#shutil.copytree("Exposition Date Main",path.get()+"\\Exposition Date")
+	print ("File Copy Created")
+	Addons()
+
+def Addons():
 	if (state.get() == 1):
 		CreateDesktop()
 	if (state1.get() ==1):
-		print("Execute")
-		#execfile(path.get()+"\\Exposition Date\\dist\\Exposition Date.exe")
+		Launch()
 	root.quit()
 
 state=IntVar()
