@@ -2,7 +2,7 @@ import os
 import subprocess  
 
 
-filestring="log.txt"
+filestring="C:\\Users\\Dexter Hubbard\\Documents\\GitHub\\Exposition-Date\\Exposition Date Main\\dist\\Exposition Date.exe"
 def A1():
 	os.system("start " + filestring)
 def A2():
@@ -11,5 +11,6 @@ def A3():
 	os.startfile(filestring)
 def A4():
 	os.spawnv(filestring)
-
-A1()
+def A5():
+	os.execfile(filestring)
+A5()

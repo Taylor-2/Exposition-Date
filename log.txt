@@ -1,13 +1,5 @@
 Initializing...
 
-Widthvar set to 54
-Whatev set to 54
-textvar reset to null
+hkjllkjhkjh
 
-Widthvar set to 58
-Whatev set to 58
-textvar reset to null
-
-Widthvar set to 7987
-Whatev set to 7987
-textvar reset to null
+fdfdfd

@@ -1,30 +1,23 @@
 from tkinter import *
+import tkinter.messagebox as msg
 import os
 
 root = Tk()
 
 log = []
-ctr = 0
 log.append("Initializing...\n")
 textvar=StringVar()
 textvar.set("")
-widthvar=20
-whatev=StringVar()
-whatev.set("Start")
+labeltext=StringVar()
+labeltext.set("Start")
 
-
-def submit():
-	global widthvar
-	global whatev
-	widthvar=int(textvar.get())
-	log.append("\nVariable set to " + str(widthvar) + "\n")
-	whatev.set(textvar.get())
+def submit(event=None):
+	log.append("\n" + str(textvar.get()) + "\n")
+	labeltext.set(textvar.get())
 	textvar.set("")
-	log.append("textvar reset to null\n")
 
-def exit():
+def exit(event=None):
 	os.remove("log.txt")
-	print("writing")
 	file=open("log.txt","w")
 	ctr1 = 0
 	while(ctr1<len(log)):
@@ -34,14 +27,16 @@ def exit():
 	os.system("start log.txt")
 	quit()
 
-ent=Entry(root,textvariable=textvar,width=widthvar)
-submit = Button(root,text="Submit", command = submit)
-whatever= Button(root,text="Exit",command=exit)
-lab=Label(root,textvariable=whatev)
+enteryfield=Entry(root,textvariable=textvar,width=20)
+enteryfield.bind('<Return>', submit)
+enteryfield.bind('<Alt Escape>', exit)
+submitbutton = Button(root,text="Submit", command = submit)
+exitbutton= Button(root,text="Exit",command=exit)
+resultslabel=Label(root,textvariable=labeltext)
 
-ent.pack()
-lab.pack()
-submit.pack()
-whatever.pack()
+enteryfield.pack()
+resultslabel.pack()
+submitbutton.pack()
+exitbutton.pack()
 
 mainloop()
